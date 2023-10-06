@@ -1,5 +1,5 @@
-import { getProductCategories, getProductsByCategory } from "./modules/model/dummyjasonLib.js";
-import { buildCategoryButtons, buildArticles } from "./modules/view/viewCode.js";
+import { getProductCategories, getProductsByCategory, getProductById } from "./modules/model/dummyjasonLib.js";
+import { buildCategoryButtons, buildArticles, buildProductView } from "./modules/view/viewCode.js";
 
 // Definer dine callback-funktioner i samme omfang som handleCategoryClick
 window._myEventListners = {
@@ -46,7 +46,8 @@ function handleCategoryClick(categoryName) {
     
       .then((product) => {
         // Produktet er nu tilgængeligt, gør noget med det, f.eks. vis det i en modal eller en detaljeret visning
-        console.log(product);
+   
+        buildProductView(product);
       })
       .catch((error) => {
         console.error("Error:", error);
