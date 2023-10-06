@@ -1,9 +1,13 @@
+
 import { getProductCategories, getProductsByCategory, getProductById } from "./modules/model/dummyjasonLib.js";
 import { buildCategoryButtons, buildArticles, buildProductView } from "./modules/view/viewCode.js";
 
+// Opret en global variabel til at spore det senest viste element
+
+
 // Definer dine callback-funktioner i samme omfang som handleCategoryClick
 window._myEventListners = {
-  handleCategoryClick,handleThumbnailClick
+  handleCategoryClick,handleThumbnailClick,handleBackClick
 };
 
 initApp();
@@ -27,6 +31,8 @@ function initApp() {
 
 // Funktionen, der håndterer klik på kategoriknappen
 function handleCategoryClick(categoryName) {
+    console.log('handleCategoryClick blev kaldt med', categoryName);
+   
   getProductsByCategory(categoryName)
     .then((products) => {
       // Nu har du dataobjekterne i 'products' arrayet
@@ -39,17 +45,26 @@ function handleCategoryClick(categoryName) {
 }
 
 
-//Det er dette issue du er kommet til:
+
   // Funktion til at håndtere klik på thumbnail
-  function handleThumbnailClick(productId) {
+  function handleThumbnailClick(productId,categoryName) {
+    console.log('handleThumbnailClick blev kaldt med', categoryName);
+
     getProductById(productId)
     
       .then((product) => {
         // Produktet er nu tilgængeligt, gør noget med det, f.eks. vis det i en modal eller en detaljeret visning
-   
-        buildProductView(product);
+  
+        buildProductView(product,categoryName);
       })
       .catch((error) => {
         console.error("Error:", error);
       });
+  }
+
+
+// Tilbageknap klikhændelse
+function handleBackClick() {
+    console.log('hej');
+
   }

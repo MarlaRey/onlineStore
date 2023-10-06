@@ -53,8 +53,8 @@ export function buildArticles(products) {
     myApp.innerHTML = myUserHtml;
   }
   
-  
-export function buildProductView(product) {
+  export function buildProductView(product, categoryName) {
+    console.log(categoryName);
     // find DOM element
     let myApp = document.getElementById('productDisplay');
   
@@ -64,41 +64,29 @@ export function buildProductView(product) {
     // Opret elementer til at vise produktet
     const productContainer = document.createElement('div');
   
-    // Titel
-    const title = document.createElement('h3');
-    title.textContent = product.title;
-  
-  
-    // Beskrivelse
-    const description = document.createElement('p');
-    description.textContent = product.description;
-  
-    // Pris
-    const price = document.createElement('p');
-    price.textContent = `Price: ${product.price} kr.`;
-  
-    // Tilbageknap
-    const backButton = document.createElement('button');
-    backButton.textContent = 'Back';
-    backButton.addEventListener('click', () => {
-      // Implementer logik for at gå tilbage her
-    });
-  
-    // Tilføj elementer til produktcontaineren
-    productContainer.appendChild(title);
-        // Hent de første tre billeder fra arrayet (hvis de er tilgængelige)
-        const images = product.images || []; // Antag, at billederne er i et felt kaldet "images"
-        for (let i = 0; i < Math.min(images.length, 4); i++) {
-          const image = document.createElement('img');
-          image.src = images[i];
-          image.alt = `Image ${i + 1}`;
-          productContainer.appendChild(image);
-        }
-    productContainer.appendChild(description);
-    productContainer.appendChild(price);
-    productContainer.appendChild(backButton);
-  
+    // Opret HTML for produktet ved hjælp af en templatestring
+    productContainer.innerHTML = `
+      <h3>${product.title}</h3>
+      ${product.images.slice(0, 2).map((image, index) => `
+        <img src="${image}" alt="Image ${index + 1}">
+      `).join('')}
+      <p>${product.description}</p>
+      <p>Price: ${product.price} kr.</p>
+      <button onclick="window._myEventListners.handleCategoryClick('${categoryName}')">
+          ${categoryName}
+        
+        </button>
+
+    `;
+    
     // Tilføj produktcontaineren til myApp
     myApp.appendChild(productContainer);
-  }
+    
+}
+
+
+
+
+
+
   
