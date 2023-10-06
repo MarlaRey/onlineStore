@@ -169,6 +169,7 @@ export  function getProductCategories(){
   })
 
   .then((data) => {
+  
     // send data on to view functions
     return data;
   })
