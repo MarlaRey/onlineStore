@@ -7,7 +7,7 @@ import { buildCategoryButtons, buildArticles, buildProductView } from "./modules
 
 // Definer dine callback-funktioner i samme omfang som handleCategoryClick
 window._myEventListners = {
-  handleCategoryClick,handleThumbnailClick,handleBackClick
+  handleCategoryClick,handleThumbnailClick
 };
 
 initApp();
@@ -63,8 +63,3 @@ function handleCategoryClick(categoryName) {
   }
 
 
-// Tilbageknap klikhændelse
-function handleBackClick() {
-    console.log('hej');
-
-  }

@@ -54,7 +54,7 @@ export function buildArticles(products) {
   }
   
   export function buildProductView(product, categoryName) {
-    console.log(categoryName);
+    console.log(product);
     // find DOM element
     let myApp = document.getElementById('productDisplay');
   
@@ -72,8 +72,8 @@ export function buildArticles(products) {
       `).join('')}
       <p>${product.description}</p>
       <p>Price: ${product.price} kr.</p>
-      <button onclick="window._myEventListners.handleCategoryClick('${categoryName}')">
-          ${categoryName}
+      <button onclick="window._myEventListners.handleCategoryClick('${product.category}')">
+          ${product.category}
         
         </button>
 
